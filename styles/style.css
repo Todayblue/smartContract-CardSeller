@@ -1,0 +1,220 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-image: url(../images/yugi-bg1.jpg);
+}
+
+
+body, h1 {
+	color: #faf9f6;
+}
+
+h1:not(:last-child) {
+	margin-bottom: 24px;
+}
+
+.mixed-horizontal {
+	writing-mode: horizontal-tb;
+	text-orientation: mixed;
+	text-align: center;
+}
+
+.mixed-vertical {
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+}
+
+.upright {
+	writing-mode: vertical-rl;
+	text-orientation: upright;
+	letter-spacing: -0.2ch;
+}
+
+.spacing-label {
+	font-family: monospace;
+}
+
+.spacing-label.normal-spacing {
+	text-decoration: line-through rgba(255, 180, 0, 0.3) 1ex;
+}
+
+
+.product-grid {
+	display: grid;
+	margin-top: 5rem;
+	gap: 5rem;
+	grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.product-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.product-card h4 {
+	text-align: center;
+}
+
+.product-card img {
+	width: 270px;
+	height: 70vh;
+	padding-left: 0.5em;
+	object-fit: cover;
+}
+
+.product-details {
+	padding-top: 1em;
+	text-align: right;
+}
+
+.product-details h4 {
+	text-align: center;
+	font-size: auto;
+}
+
+.product-price {
+	display: block;
+	margin-bottom: 5px;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* !Button */
+.button-buy {
+	align-items: center;
+	background-color: #faf9f6;
+	border: 2px solid #4682b4;
+	box-sizing: border-box;
+	color: #4682b4;
+	cursor: pointer;
+	display: inline-flex;
+	fill: #36454f;
+	font-size: 16px;
+	font-weight: 500;
+	height: 48px;
+	justify-content: center;
+	letter-spacing: -0.8px;
+	line-height: 24px;
+	min-width: 140px;
+	outline: 0;
+	padding: 0 17px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.3s;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+}
+
+.button-buy:focus {
+	color: #36454f;
+}
+
+.button-buy:hover {
+	border-color: #36454f;
+	color: #36454f;
+	fill: #36454f;
+}
+
+.button-59:active {
+	border-color: #36454f;
+	color: #36454f;
+	fill: #36454f;
+}
+
+@media (min-width: 768px) {
+	.button-59 {
+		min-width: 170px;
+	}
+}
+
+
+/* ------------------------------------ */
+a {
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* ------------------------------------ */
+input {
+	display: block;
+	outline: none;
+	border: none !important;
+}
+
+textarea {
+	display: block;
+	outline: none;
+}
+
+textarea:focus,
+input:focus {
+	border-color: transparent !important;
+}
+
+/* ------------------------------------ */
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+iframe {
+	border: none !important;
+	
+}
+
+.styled-table {
+	color: #36454f;
+	border-collapse: collapse;
+	height: 50vh;
+	background-color: lightsteelblue;
+	width: 100%;
+	font-size: 0.9em;
+	font-family: sans-serif;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	/* border: 2px solid #4682b4; */
+}
+
+.styled-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+}
+
+.styled-table tbody tr.active-row {
+	font-weight: bold;
+	color: #4682b4;
+}
+
+.tbody-table {
+	text-align: center;	
+}
+
+.table-head {
+	margin-top: 5rem;
+	text-align: center;
+}

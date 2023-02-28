@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Yugi Cards Market</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+
+<!-- *Body -->
+
+<body>
+
+    <div class="container">
+        <h1 class="mixed-horizontal">Yu Gi Oh Cards Market ⚔️🐧⚔️</h1>
+
+        <div class="product-grid">
+
+            <!-- *Card 1 -->
+            <div class="product-card">
+                <h4>Blue-Eyes White Dragon</h4>
+                <img src="../images/Card/Card1-BlueEyesWhiteDragon.webp">
+                <div class="product-details">
+
+                    <span class="product-price">0.000001 ETC</span>
+                    <button class="button-buy" role="button"
+                        onclick="buttonBuy('Blue-Eyes White Dragon', 100000000000000)">Buy Now</button>
+
+                </div>
+            </div>
+
+            <!-- *Card 2 -->
+            <div class="product-card">
+                <h4>Dark Magician</h4>
+                <img src="../images/Card/Card2-DarkMagician-HAC1-EN-DUPR-1E.webp">
+                <div class="product-details">
+
+                    <span class="product-price">0.00002 ETC</span>
+                    <button class="button-buy" role="button" onclick="buttonBuy('Dark Magician', 200000000000000)">Buy
+                        Now</button>
+                </div>
+            </div>
+            <!-- *Card 3 -->
+            <div class="product-card">
+                <h4>Elemental Hero Wildheart</h4>
+                <img src="../images/Card/Card3-ElementalHEROWildheart-GSE-EN-UScR-LE.webp">
+                <div class="product-details">
+
+                    <span class="product-price">0.00003 ETC</span>
+                    <button class="button-buy" role="button"
+                        onclick="buttonBuy('Elemental Hero Wildheart', 300000000000000)">Buy Now</button>
+                </div>
+            </div>
+            <!-- *Card 4 -->
+            <div class="product-card">
+                <h4>Pot of Duality</h4>
+                <img src="../images/Card/Card4-PotofDuality-PGL2-EN-GUR-UE.webp">
+                <div class="product-details">
+
+                    <span class="product-price">0.00004 ETC</span>
+                    <button class="button-buy" role="button" onclick="buttonBuy('Pot of Duality', 400000000000000)">Buy
+                        Now</button>
+                </div>
+            </div>
+            <!-- *Card 5 -->
+            <div class="product-card">
+                <h4>Exodia the Forbidden One</h4>
+                <img src="../images/Card/Card5-ExodiatheForbiddenOne-BLCR-EN-StR-1E.webp">
+                <div class="product-details">
+                    <span class="product-price">0.0005 ETC</span>
+                    <button class="button-buy" role="button"
+                        onclick="buttonBuy('Exodia the Forbidden One', 500000000000000)">Buy Now</button>
+                </div>
+            </div>
+            <!-- *Card 6 -->
+            <div class="product-card">
+                <h4>Gravity Bind</h4>
+                <img src="../images/Card/Card6-GravityBind-LDK2-EN-C-1E.webp">
+                <div class="product-details">
+                    <span class="product-price">0.00006 ETC</span>
+                    <button class="button-buy" role="button" onclick="buttonBuy('Gravity Bind', 600000000000000)">Buy
+                        Now</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="styled-table">
+            <h1 class="table-head">Information</h1>
+
+                <thead>
+                    <tr>
+                        <th>Card Name</th>
+                        <th>Owner</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-table">
+                    <tr>
+                        <td id="cardName1"></td>
+                        <td id="owner1"></td>
+                        <td id="timeStamp1"></td>
+                    </tr>
+                    <tr class="active-row">
+                        <td id="cardName2"></td>
+                        <td id="owner2"></td>
+                        <td id="timeStamp2"></td>
+                    </tr>
+                    <tr>
+                        <td id="cardName3"></td>
+                        <td id="owner3"></td>
+                        <td id="timeStamp3"></td>
+                    </tr>
+                    <tr class="active-row">
+                        <td id="cardName4"></td>
+                        <td id="owner4"></td>
+                        <td id="timeStamp4"></td>
+                    </tr>
+                    <tr>
+                        <td id="cardName5"></td>
+                        <td id="owner5"></td>
+                        <td id="timeStamp5"></td>
+                    </tr>
+                    <tr class="active-row">
+                        <td id="cardName6"></td>
+                        <td id="owner6"></td>
+                        <td id="timeStamp6"></td>
+                    </tr>
+                </tbody>
+
+        </table>
+
+        <!-- !Table -->
+
+
+
+
+        <!-- *JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+        <script>
+            async function loadWeb3() {
+                if (window.ethereum) {
+                    window.web3 = new Web3(window.ethereum);
+                    window.ethereum.enable();
+                }
+            }
+
+            let currentAccount = null;
+            window.ethereum
+                .request({ method: "eth_accounts" })
+                .then(handleAccountsChanged)
+                .catch((err) => {
+                    console.error(err);
+                });
+
+            window.ethereum.on("accountsChanged", handleAccountsChanged);
+
+            function handleAccountsChanged(accounts) {
+                if (accounts.length === 0) {
+                    // MetaMask is locked or the user has not connected any accounts
+                    console.log("Please connect to MetaMask.");
+                } else if (accounts[0] !== currentAccount) {
+                    currentAccount = accounts[0];
+                }
+            }
+
+            let abi = [
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "address",
+                            "name": "owner",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "cardName",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "Add",
+                    "type": "event"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "name",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "buy",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                }
+            ]
+
+
+            async function loadContract() {
+                return await new window.web3.eth.Contract(
+                    abi,
+                    "0x0eCa5487859eDb5e0458e3bBA29D54d4DCDab9b4"
+                );
+            }
+
+            async function load() {
+                await loadWeb3();
+                window.contract = await loadContract();
+                updateStatus("Ready!");
+            }
+
+            function updateStatus(status) {
+                const statusEl = document.getElementById("status");
+                statusEl.innerHTML = status;
+                console.log(status);
+            }
+
+
+            var i = 0;
+
+            function buttonBuy(name, eth) {
+                console.log(currentAccount);
+                window.contract.methods
+                    .buy(name)
+                    .send({ from: currentAccount, value: eth }, function (error, result) {
+                        $("#result").html(result);
+                    });
+
+                window.contract.once("Add", {}, function (error, event) {
+                    if (!error) {
+                        var h = new Date().getHours();
+                        var m = new Date().getMinutes();
+                        var timestamp = Date.now();
+                        // console.log(timestamp);
+                        // Converting it back to human-readable date and time
+                        var d = new Date(timestamp);
+                        console.log(d);
+                        console.log(event);
+                        $("#result").html(
+                            "Name:" +
+                            event.returnValues.cardName +
+                            "<br/>time:" +
+                            h +
+                            ":" +
+                            m +
+                            "<br/>owner:" +
+                            event.returnValues.owner
+
+                        );
+                        i++;
+                        $("#timeStamp" + i).html(d);
+                        $("#cardName" + i).html(event.returnValues.cardName);
+                        $("#owner" + i).html(event.returnValues.owner);
+                    }
+                });
+
+                window.contract.once("RegistrationError", {}, function (error, event) {
+                    if (!error) {
+                        console.log(event);
+                        $("#result").html(
+                            "Error: " +
+                            event.returnValues.text +
+                            "<br/>Reason:" +
+                            event.returnValues.reason
+                        );
+                    }
+                });
+            }
+            load();
+        </script>
+</body>
+
+</html>
